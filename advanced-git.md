@@ -85,4 +85,72 @@ git diff hash1 hash2
 ```
 
 ---
-*Napomena: Napredne komande koje menjaju istoriju (`amend`, `rebase`, `reset`) koristite pažljivo, naročito ako delite kod sa drugima.*
+
+## 8. Rad na više mesta istovremeno (Worktree)
+**Scenario**: Radite na velikom refaktoringu frontenda na grani `ui-rework`. Odjednom, klijent javlja da je pao sistem na produkciji (`main` grana). Ne želite da radite `stash` jer imate 50 otvorenih fajlova.
+
+```bash
+# Napravite poseban direktorijum za rad na drugoj grani
+git worktree add ../hotfix main
+```
+*Sada imate dva foldera: jedan gde je vaš `ui-rework` i drugi (`../hotfix`) gde je čista `main` grana. Možete ih otvoriti istovremeno u dva prozora editora!*
+
+---
+
+## 9. Sopstvene prečice (Aliases)
+**Scenario**: Umorni ste od kucanja dugih komandi za lepši log. Napravite svoju komandu `git viz`.
+
+```bash
+# Napravite alias
+git config --global alias.viz "log --oneline --graph --all"
+
+# Sada kucajte samo:
+git viz
+```
+
+---
+
+## 10. Selektivno dodavanje izmena (Patch Mode)
+**Scenario**: U `ProductController.java` ste dodali i logiku za stock i novi endpoint za pretragu. Želite da to budu dva odvojena commit-a iako su u istom fajlu.
+
+```bash
+# Git će vas pitati za svaki blok (hunk) koda posebno
+git add -p backend/src/main/java/com/vibe/ecommerce_backend/controller/ProductController.java
+```
+*Odgovorite sa `y` (yes) da dodate taj deo, ili `n` (no) da ga preskočite za ovaj commit.*
+
+---
+
+## 11. Potraga po sadržaju koda (Pickaxe)
+**Scenario**: Negde u istoriji je postojao kod koji je obrađivao popuste, ali je obrisan. Ne znate u kom fajlu ni kada.
+
+```bash
+# Nađi sve commit-ove gde se string "discount" pojavio ili nestao
+git log -S "discount" --patch
+```
+
+---
+
+## 12. Automatizacija uz Git Hooks
+**Scenario**: Želite da sprečite sebe (ili studente) da urade commit ako u kodu postoji reč "TODO" ili ako testovi ne prolaze.
+
+```bash
+# Fajlovi u .git/hooks/ direktorijumu se izvršavaju pri određenim akcijama
+# npr. pre-commit skripta može da pokrene 'npm test'
+```
+
+---
+
+## 13. Masovno čišćenje (Clean)
+**Scenario**: Instalirali ste gomilu biblioteka, generisali logove i test report-e koji nisu u Gitu. Želite da vratite folder u "fabričko" stanje.
+
+```bash
+# Prvo proverite šta će biti obrisano
+git clean -n -d
+
+# Zatim obrišite sve ne-praćene fajlove i foldere
+git clean -f -d
+```
+
+---
+*Napomena: Git je kao švajcarski nož - što više alata poznajete, to ste efikasniji u rešavanju problema.*
