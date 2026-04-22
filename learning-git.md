@@ -1,0 +1,110 @@
+# Git Edukacija - E-commerce Vibe
+
+Ovaj dokument prati razvoj projekta kroz Git komande. Svaki korak u razvoju je propraćen odgovarajućim Git akcijama kako biste naučili kako se projekat vodi u realnom okruženju.
+
+## 1. Inicijalizacija Projekta
+
+Prvi korak u svakom projektu je inicijalizacija Git repozitorijuma.
+
+```bash
+# Inicijalizacija novog Git repozitorijuma
+git init
+```
+
+## 2. Podešavanje Backend-a (Spring Boot)
+
+Nakon što smo generisali osnovnu strukturu Spring Boot projekta, dodajemo fajlove u Git.
+
+```bash
+# Provera statusa (vidi se šta je novo)
+git status
+
+# Dodavanje svih fajlova u backend direktorijumu
+git add backend/
+
+# Prvi commit sa opisnom porukom
+git commit -m "feat: Inicijalno podešavanje Spring Boot backenda"
+```
+
+## 3. Podešavanje Frontend-a (React + Vite)
+
+Slično kao za backend, inicijalizujemo frontend i beležimo promene.
+
+```bash
+# Dodavanje frontend fajlova
+git add frontend/
+
+# Commit za frontend (koristeći Node v24)
+git commit -m "feat: Inicijalno podešavanje React frontenda sa Vite (Node v24)"
+```
+
+---
+
+## 4. Implementacija Backend Logike
+
+Dodajemo modele, repozitorijume i kontrolere koji čine srž API-ja.
+
+```bash
+# Provera šta je sve izmenjeno/dodato u src folderu
+git status
+
+# Dodavanje svih Java klasa
+git add backend/src/main/java/com/vibe/ecommerce_backend/
+
+# Commit za backend logiku
+git commit -m "feat: Implementacija modela, repozitorijuma i kontrolera"
+```
+
+---
+
+## 5. Razvoj Frontend Komponenti
+
+Kreiranje korisničkog interfejsa, upravljanje korpom i povezivanje sa API-jem.
+
+```bash
+# Provera izmenjenih fajlova na frontendu
+git status
+
+# Dodavanje svih komponenti i stilova
+git add frontend/src/
+
+# Commit za frontend funkcionalnosti
+git commit -m "feat: Implementacija UI komponenti, korpe i checkout-a"
+```
+
+---
+
+## 6. Podešavanje Testova (Playwright)
+
+Dodavanje E2E testova kako bismo osigurali da aplikacija radi ispravno iz ugla korisnika.
+
+```bash
+# Inicijalizacija Playwright-a
+npm init playwright@latest
+
+# Dodavanje test fajlova u Git
+git add tests/ playwright.config.ts
+
+# Commit za testove
+git commit -m "test: Dodat Playwright setup i E2E test"
+```
+
+---
+
+## 7. Ispravka Grešaka (Bug Fix)
+
+U toku razvoja je primećeno da nedostaje CSS fajl. Ovo je primer kako se dokumentuje ispravka.
+
+```bash
+# Provera statusa i uvid u novi fajl
+git status
+
+# Dodavanje konkretnog fajla koji je nedostajao
+git add frontend/src/components/ProductList.css
+
+# Commit sa 'fix' prefiksom
+git commit -m "fix: Dodat nedostajući ProductList.css fajl"
+```
+
+---
+*Napomena: Ovaj dokument je kompletan za osnovni ciklus razvoja.*
