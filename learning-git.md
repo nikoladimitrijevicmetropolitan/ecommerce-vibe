@@ -219,6 +219,11 @@ target/          # Build fajlovi Jave
 | `git revert <hash>` | Bezbedno poništavanje commit-a dodavanjem novog commit-a. |
 | `git stash` | Privremeno sklanjanje nezavršenih promena. |
 | `git stash pop` | Vraćanje sklonjenih promena nazad u radni direktorijum. |
+| `git remote add origin <url>` | Povezivanje lokalnog repozitorijuma sa GitHub-om. |
+| `git push -u origin <grana>` | Slanje koda na GitHub (prvi put). |
+| `git pull origin <grana>` | Preuzimanje najnovijeg koda sa GitHub-a. |
+| `git pull --rebase` | Preuzimanje izmena uz "ispravljanje" istorije (rešava 'rejected' grešku). |
+| `git push` | Slanje naknadnih izmena na GitHub. |
 
 ---
 *Napomena: Ovaj dokument je kompletan vodič za studente kroz osnove i napredne tehnike rada sa Git-om.*
