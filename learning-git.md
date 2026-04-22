@@ -145,4 +145,35 @@ git log --oneline --graph --all
 ```
 
 ---
+
+## 9. Vraćanje Unazad (Undoing Changes)
+
+Git nam omogućava da se vratimo na bilo koji trenutak u prošlosti projekta.
+
+### Pregled prethodnih stanja (Checkout)
+Ako želimo samo da pogledamo kod iz nekog prethodnog commit-a:
+```bash
+# Pronalaženje ID-ja (hash-a) commit-a
+git log --oneline
+
+# Prelazak na taj commit (npr. c5c3700)
+git checkout c5c3700
+```
+*Sada ste u "detached HEAD" stanju. Da se vratite na najnoviji kod, kucajte `git checkout master`.*
+
+### Trajno poništavanje (Reset)
+Ako želite da obrišete poslednje izmene i vratite se na određeni trenutak:
+```bash
+# Vraćanje na commit pre 'stock' funkcionalnosti
+git reset --hard c5c3700
+```
+**Oprez**: Sve promene napravljene nakon tog commit-a će biti obrisane iz istorije!
+
+### Poništavanje commit-a novim commit-om (Revert)
+Sigurniji način za timski rad, jer ne menja istoriju već dodaje novi commit koji "poništava" prethodni:
+```bash
+git revert 46a4c1a
+```
+
+---
 *Napomena: Ovaj dokument je kompletan za osnovni i napredni ciklus razvoja.*
