@@ -176,4 +176,27 @@ git revert 46a4c1a
 ```
 
 ---
+
+## 10. Ignorisanje Fajlova (.gitignore)
+
+Neki fajlovi ne treba nikada da završe u repozitorijumu (npr. lozinke, privremeni fajlovi, biblioteke).
+
+### Kako radi .gitignore?
+Kreiramo fajl pod nazivom `.gitignore` u korenu projekta i u njega upisujemo putanje koje Git treba da ignoriše.
+
+### Primer vežbe
+1. Kreirajte osetljiv fajl: `echo "SECRET_KEY=12345" > .env`
+2. Proverite status: `git status` (videćete `.env` kao "untracked")
+3. Dodajte `.env` u `.gitignore`
+4. Ponovo proverite status: `git status` (fajl `.env` je "nestao" sa liste za Git!)
+
+### Šta obično ignorišemo?
+```text
+node_modules/    # Biblioteke (npm install ih ponovo skida)
+target/          # Build fajlovi Jave
+.env             # Tajni podaci i ključevi
+.vscode/         # Lična podešavanja editora
+```
+
+---
 *Napomena: Ovaj dokument je kompletan za osnovni i napredni ciklus razvoja.*
