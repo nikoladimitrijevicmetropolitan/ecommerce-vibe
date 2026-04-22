@@ -199,4 +199,26 @@ target/          # Build fajlovi Jave
 ```
 
 ---
-*Napomena: Ovaj dokument je kompletan za osnovni i napredni ciklus razvoja.*
+
+## Git Cheatsheet (Podsetnik)
+
+| Komanda | Opis |
+| :--- | :--- |
+| `git init` | Inicijalizacija novog repozitorijuma. |
+| `git status` | Provera stanja fajlova (šta je izmenjeno, šta nije u Gitu). |
+| `git add <fajl>` | Dodavanje fajla u "staging area" (priprema za commit). |
+| `git add .` | Dodavanje **svih** izmenjenih fajlova u staging. |
+| `git commit -m "poruka"` | Trajno čuvanje pripremljenih izmena uz opis. |
+| `git log --oneline` | Pregled istorije commit-ova u jednoj liniji. |
+| `git log --graph --all` | Vizuelni prikaz svih grana i commit-ova. |
+| `git checkout -b <ime_grane>` | Kreiranje nove grane i prelazak na nju. |
+| `git checkout <ime_grane>` | Prelazak na postojeću granu. |
+| `git checkout <hash>` | Privremeni povratak na određeni commit u prošlosti. |
+| `git merge <ime_grane>` | Spajanje izabrane grane u trenutnu granu (obično master). |
+| `git reset --hard <hash>` | Trajno vraćanje projekta na određeni commit (brisanje novijih izmena). |
+| `git revert <hash>` | Bezbedno poništavanje commit-a dodavanjem novog commit-a. |
+| `git stash` | Privremeno sklanjanje nezavršenih promena. |
+| `git stash pop` | Vraćanje sklonjenih promena nazad u radni direktorijum. |
+
+---
+*Napomena: Ovaj dokument je kompletan vodič za studente kroz osnove i napredne tehnike rada sa Git-om.*
