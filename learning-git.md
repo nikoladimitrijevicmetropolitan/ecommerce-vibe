@@ -107,4 +107,42 @@ git commit -m "fix: Dodat nedostajući ProductList.css fajl"
 ```
 
 ---
-*Napomena: Ovaj dokument je kompletan za osnovni ciklus razvoja.*
+
+## 8. Rad sa Granama (Branching & Merging)
+
+U realnom radu, nove funkcionalnosti se razvijaju na posebnim granama kako bi `master` (glavna) grana uvek bila stabilna.
+
+### Kreiranje i prelazak na novu granu
+```bash
+# Kreiranje 'feature' grane za upravljanje zalihama
+git checkout -b feature/stock-management
+```
+
+### Rad na grani
+Nakon izmena koda, promene beležimo samo na toj grani.
+```bash
+git add .
+git commit -m "feat: Dodato polje za zalihe (stock)"
+```
+
+### Spajanje sa glavnom granom
+Kada je funkcionalnost spremna, spajamo je sa `master` granom.
+```bash
+# Povratak na master granu
+git checkout master
+
+# Spajanje izmena sa feature grane
+git merge feature/stock-management
+
+# (Opciono) Brisanje grane koja nam više ne treba
+git branch -d feature/stock-management
+```
+
+### Pregled istorije
+```bash
+# Vizuelni prikaz svih commit-ova i grana
+git log --oneline --graph --all
+```
+
+---
+*Napomena: Ovaj dokument je kompletan za osnovni i napredni ciklus razvoja.*
