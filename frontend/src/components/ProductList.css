@@ -1,13 +1,79 @@
-.product-list-container h1 {
-  text-align: center;
-  margin: 3rem 0;
-  color: #1e293b;
-  font-size: 2.5rem;
+.product-list-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
 }
 
-.loading, .no-products {
-  text-align: center;
-  padding: 5rem;
-  font-size: 1.2rem;
-  color: #64748b;
+.list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.list-header h1 {
+    font-size: 2rem;
+    color: var(--text-color);
+}
+
+.sort-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.sort-controls label {
+    font-weight: 500;
+    color: #64748b;
+}
+
+.sort-controls select {
+    padding: 0.6rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background: var(--card-bg);
+    color: var(--text-color);
+    font-family: inherit;
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.sort-controls select:focus {
+    border-color: var(--accent-color);
+}
+
+.results-count {
+    color: #64748b;
+    margin-bottom: 2rem;
+    font-size: 0.95rem;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.loading {
+    text-align: center;
+    padding: 5rem;
+    font-size: 1.2rem;
+    color: var(--accent-color);
+}
+
+.no-products {
+    text-align: center;
+    padding: 5rem;
+    color: #64748b;
+    grid-column: 1 / -1;
+}
+
+@media (max-width: 768px) {
+    .list-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
 }

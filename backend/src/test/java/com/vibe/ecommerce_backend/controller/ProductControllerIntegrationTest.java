@@ -32,25 +32,27 @@ public class ProductControllerIntegrationTest {
     }
 
     @Test
-    void trebaDaVratiSveProizvode() throws Exception {
+    void trebaDaVratiSveProizvodeUPaginaciji() throws Exception {
         mockMvc.perform(get("/api/products"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(3)));
+                .andExpect(jsonPath("$.content", hasSize(3)))
+                .andExpect(jsonPath("$.totalElements").value(3))
+                .andExpect(jsonPath("$.totalPages").value(1));
     }
 
     @Test
-    void trebaDaFiltriraPoKategoriji() throws Exception {
+    void trebaDaFiltriraPoKategorijiUPaginaciji() throws Exception {
         mockMvc.perform(get("/api/products?category=Elektronika"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(2)));
+                .andExpect(jsonPath("$.content", hasSize(2)));
     }
 
     @Test
-    void trebaDaPretraziPoImenu() throws Exception {
+    void trebaDaPretraziPoImenuUPaginaciji() throws Exception {
         mockMvc.perform(get("/api/products?search=Laptop"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(1)))
-                .andExpect(jsonPath("$[0].name").value("Laptop Pro"));
+                .andExpect(jsonPath("$.content", hasSize(1)))
+                .andExpect(jsonPath("$.content[0].name").value("Laptop Pro"));
     }
 
     @Test
