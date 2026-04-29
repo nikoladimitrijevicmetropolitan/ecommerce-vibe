@@ -79,4 +79,31 @@ Možda se pitate: *"Ako imamo Unit testove za svaki deo i Integracione za spojev
 
 ---
 
-*Zapamtite: Testovi su dokumentacija koja nikada ne zastareva.*
+## Izveštaj o implementaciji (Rezime časa)
+
+Danas smo uspešno prešli put od teorije do kompletne testne pokrivenosti aplikacije. Evo detalja:
+
+### 1. Frontend: Vitest & RTL
+Uveli smo **Vitest** kao primarni alat za unit testiranje jer je optimizovan za Vite projekte.
+- **Šta smo testirali**: 
+    - `CartContext.test.jsx`: Proverili smo logiku korpe (dodavanje, brisanje, dupliranje stavki). Otkrili smo važnost mock-ovanja `localStorage`-a.
+    - `ProductCard.test.jsx`: Potvrdili smo da se podaci ispravno mapiraju na UI i da dugme za kupovinu poziva odgovarajuću funkciju.
+- **Rezultat**: 7/7 testova prošlo.
+
+### 2. Backend: JUnit 5 & MockMvc
+Naišli smo na **važan problem**: Testovi nisu hteli da se kompajliraju zbog pogrešne verzije Spring Boot-a (`4.0.5` koja ne postoji).
+- **Rešenje**: Refaktorisali smo `pom.xml`, spustili verziju na stabilnu `3.4.2` i dodali `spring-boot-starter-test`.
+- **Šta smo testirali**: 
+    - `ProductControllerIntegrationTest.java`: Provera listanja, pretrage i filtriranja.
+    - `OrderControllerIntegrationTest.java`: Provera uspešnog kreiranja porudžbine putem POST zahteva.
+- **Rezultat**: 6/6 testova prošlo.
+
+### 3. E2E: Playwright
+Na kraju smo pokrenuli celu bateriju E2E testova kako bismo bili sigurni da nove zavisnosti i promene u `pom.xml` nisu narušile stabilnost aplikacije.
+- **Rezultat**: 9/9 testova prošlo na svim browserima (Chromium, Firefox, WebKit).
+
+### Ključni zaključak za studente:
+Čak i kada "mali" testovi prolaze, uvek moramo pokrenuti E2E testove jer oni proveravaju **konfiguraciju sistema** (kao što je bila greška sa verzijom u `pom.xml`) koju izolovani testovi često ne vide.
+
+---
+*Status projekta: 22 testa ukupno, svi su zeleni (PASS).*

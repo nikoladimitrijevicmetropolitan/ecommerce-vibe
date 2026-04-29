@@ -198,6 +198,24 @@ target/          # Build fajlovi Jave
 .vscode/         # Lična podešavanja editora
 ```
 
+### Praktičan primer: Uvođenje testova (29.04.)
+
+Evo kako smo danas radili na uvođenju testova koristeći grane:
+
+1.  **Kreiranje nove grane**:
+    `git checkout -b feature/testing-setup`
+    *(Ovim smo se odvojili od main grane da bismo na miru radili na testovima)*
+
+2.  **Rad i commit-ovanje**:
+    Nakon pisanja testova i popravke `pom.xml`, snimili smo izmene:
+    `git add .`
+    `git commit -m "feat: Implementirani unit i integration testovi"`
+
+3.  **Povratak na main i spajanje (u planu)**:
+    Kada smo sigurni da sve radi (E2E prošao), spajamo nazad:
+    `git checkout main`
+    `git merge feature/testing-setup`
+
 ---
 
 ## Git Cheatsheet (Podsetnik)
