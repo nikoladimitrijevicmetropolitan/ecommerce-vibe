@@ -167,7 +167,7 @@ echo "JWT_SECRET=..." >> .env       # Tajni podaci u .env
 
 ---
 
-## Faza 4: Admin Panel
+## Faza 4: Admin Panel [COMPLETED 03.05.]
 
 **Cilj**: Naučiti studente CRUD operacije na frontendu i autorizaciju po ulogama.
 

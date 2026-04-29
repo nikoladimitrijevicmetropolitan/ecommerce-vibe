@@ -31,4 +31,29 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Proizvod sa ID " + id + " nije pronađen"));
     }
+
+    @Override
+    public Product saveProduct(Product product) {
+        return productRepository.save(product);
+    }
+
+    @Override
+    public Product updateProduct(Long id, Product product) {
+        Product existingProduct = getProductById(id);
+        
+        existingProduct.setName(product.getName());
+        existingProduct.setDescription(product.getDescription());
+        existingProduct.setPrice(product.getPrice());
+        existingProduct.setCategory(product.getCategory());
+        existingProduct.setImageUrl(product.getImageUrl());
+        existingProduct.setStock(product.getStock());
+        
+        return productRepository.save(existingProduct);
+    }
+
+    @Override
+    public void deleteProduct(Long id) {
+        Product product = getProductById(id);
+        productRepository.delete(product);
+    }
 }

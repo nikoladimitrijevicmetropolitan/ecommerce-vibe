@@ -20,6 +20,8 @@ const Navbar = () => {
     navigate('/');
   };
 
+  const isAdmin = user && user.role === 'ROLE_ADMIN';
+
   return (
     <nav className="navbar">
       <div className="navbar-container">
@@ -37,14 +39,14 @@ const Navbar = () => {
 
         <div className="navbar-links">
           <Link to="/">Proizvodi</Link>
-          <div className="navbar-categories">
-            <Link to="/?category=Elektronika">Elektronika</Link>
-            <Link to="/?category=Oprema">Oprema</Link>
-          </div>
           
           <Link to="/cart" className="navbar-cart">
             Korpa <span>({totalItems})</span>
           </Link>
+
+          {isAdmin && (
+            <Link to="/admin" className="admin-link-nav">Admin</Link>
+          )}
 
           {user ? (
             <div className="navbar-user">

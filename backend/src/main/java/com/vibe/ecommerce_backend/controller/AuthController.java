@@ -39,10 +39,17 @@ public class AuthController {
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwt = jwtUtils.generateJwtToken(authentication.getName());
+        
+        // Izvlačenje uloge (role) iz autorizacija
+        String role = authentication.getAuthorities().stream()
+                .findFirst()
+                .map(item -> item.getAuthority())
+                .orElse("ROLE_USER");
 
         Map<String, String> response = new HashMap<>();
         response.put("token", jwt);
         response.put("username", authentication.getName());
+        response.put("role", role);
         
         return ResponseEntity.ok(response);
     }
