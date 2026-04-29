@@ -216,6 +216,16 @@ Evo kako smo danas radili na uvođenju testova koristeći grane:
     `git checkout main`
     `git merge feature/testing-setup`
 
+### Primer: Paginacija i Sortiranje (30.04.)
+
+Evo kako smo radili na paginaciji:
+1.  `git checkout -b feature/pagination-sorting`
+2.  Implementacija na backendu i frontendu.
+3.  `git add .`
+4.  `git commit -m "feat: Implementirana paginacija i sortiranje"`
+5.  `git checkout main`
+6.  `git merge feature/pagination-sorting`
+
 ---
 
 ## Git Cheatsheet (Podsetnik)

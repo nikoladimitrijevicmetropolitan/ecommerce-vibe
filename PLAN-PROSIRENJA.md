@@ -71,11 +71,11 @@ git merge --no-ff feature/service-layer  # Merge sa čuvanjem istorije grane
 
 ---
 
-## Faza 2: Paginacija i Sortiranje
+## Faza 2: Paginacija i Sortiranje [COMPLETED 30.04.]
 
 **Cilj**: Naučiti studente rad sa velikim skupovima podataka i query parametrima.
 
-**Git lekcija**: Interaktivni rebase (`git rebase -i`) za čišćenje istorije pre merge-a
+**Git lekcija**: Rad na feature grani (`feature/pagination-sorting`) i interaktivni rebase.
 
 ### Backend izmene
 
