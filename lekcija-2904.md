@@ -102,8 +102,50 @@ Naišli smo na **važan problem**: Testovi nisu hteli da se kompajliraju zbog po
 Na kraju smo pokrenuli celu bateriju E2E testova kako bismo bili sigurni da nove zavisnosti i promene u `pom.xml` nisu narušile stabilnost aplikacije.
 - **Rezultat**: 9/9 testova prošlo na svim browserima (Chromium, Firefox, WebKit).
 
-### Ključni zaključak za studente:
-Čak i kada "mali" testovi prolaze, uvek moramo pokrenuti E2E testove jer oni proveravaju **konfiguraciju sistema** (kao što je bila greška sa verzijom u `pom.xml`) koju izolovani testovi često ne vide.
+---
+
+## Upgrade na Spring Boot 4.0.6
+
+Nakon što su svi testovi prošli na verziji 3.4.2, odlučili smo da pokušamo upgrade na najnoviju stabilnu verziju **Spring Boot 4.0.6** (izašla 23.04.2026).
+
+### Šta smo promenili
+
+#### `pom.xml` — 3 izmene:
+| Pre (3.4.2) | Posle (4.0.6) | Razlog |
+| :--- | :--- | :--- |
+| `spring-boot-starter-web` | `spring-boot-starter-webmvc` | SB4 razdvojio web module |
+| `spring-boot-starter-test` | `spring-boot-starter-test` + `spring-boot-starter-webmvc-test` | MockMvc premešten u poseban modul |
+| verzija `3.4.2` | verzija `4.0.6` | Upgrade parent POM |
+
+#### Importovi u testovima — promena paketa:
+```java
+// STARO (Spring Boot 3.x)
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+
+// NOVO (Spring Boot 4.x)
+import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
+```
+
+#### `OrderControllerIntegrationTest` — ObjectMapper problem:
+- U Spring Boot 4, `ObjectMapper` (Jackson) nije automatski dostupan kao bean u test kontekstu.
+- **Rešenje**: Umesto `ObjectMapper` koristimo Java **Text Block** (`"""..."""`) za direktan JSON string.
+- Ovo je ujedno i čitljiviji pristup za edukativne svrhe:
+```java
+// Umesto: objectMapper.writeValueAsString(order)
+// Pišemo direktno:
+String orderJson = """
+    {
+        "customerName": "Jovan Jovanović",
+        "customerEmail": "jovan@example.com",
+        "customerAddress": "Ulica 1",
+        "items": [],
+        "totalPrice": 1000.0
+    }
+    """;
+```
+
+### Ključna lekcija za studente:
+Upgrade major verzije frameworka (3.x → 4.x) **nikada** nije trivijalan. Čak i kada su promene "samo u nazivima paketa", bez automatizovanih testova bismo proveli sate tražeći šta ne radi. Upravo zato smo **prvo** napisali testove, pa tek onda uradili upgrade — testovi su nam bili sigurnosna mreža koja je odmah pokazala šta je puklo.
 
 ---
-*Status projekta: 22 testa ukupno, svi su zeleni (PASS).*
+*Status projekta: 22 testa ukupno, svi su zeleni (PASS) na Spring Boot 4.0.6.*
