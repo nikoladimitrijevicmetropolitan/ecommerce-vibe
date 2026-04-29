@@ -50,11 +50,32 @@ Možda se pitate: *"Ako imamo Unit testove za svaki deo i Integracione za spojev
 
 ## Plan rada za danas (29.04.)
 
-1.  **Grana**: Kreiramo `feature/testing-setup`.
-2.  **Frontend Setup**: Instalacija `Vitest` i `React Testing Library`.
-3.  **Pisanje Unit testa**: Testiramo logiku `CartContext`-a.
-4.  **Backend Integration**: Pisanje testa za `ProductController` koristeći `MockMvc`.
-5.  **Verifikacija**: Pokretanje svih testova (Unit + Integr. + E2E) kako bismo potvrdili 100% stabilnost.
+### 1. Priprema Okruženja
+- Kreiranje Git grane `feature/testing-setup` (već urađeno).
+- Instalacija **Vitest** i **React Testing Library** u frontend delu.
+- Provera Maven zavisnosti za **Spring Boot Test** i **MockMvc**.
+
+### 2. Frontend Testiranje (React + Vitest)
+- **Unit Test (Logika)**: Kreiramo `CartContext.test.jsx`. Cilj je da testiramo čistu JavaScript logiku korpe:
+    - Da li se proizvod ispravno dodaje?
+    - Da li se ukupna cena (Total Price) tačno računa?
+    - Da li `localStorage` čuva podatke nakon osvežavanja?
+- **Integration/Component Test**: Kreiramo `ProductCard.test.jsx`. Ovde proveravamo interakciju:
+    - Da li komponenta ispravno prikazuje ime i cenu?
+    - Da li se klikom na "Dodaj u korpu" poziva funkcija iz konteksta?
+
+### 3. Backend Testiranje (Spring Boot + MockMvc)
+- **Integration Test (API)**: Kreiramo `ProductControllerIntegrationTest.java`. Fokusiramo se na HTTP sloj:
+    - Da li GET `/api/products` vraća status 200 OK?
+    - Da li pretraga po nazivu (npr. `?search=Laptop`) vraća tačan broj rezultata?
+    - Da li filtriranje po kategoriji ispravno filtrira podatke iz baze?
+
+### 4. Završna Verifikacija
+- Pokretanje svih testova:
+    - `npm test` (Frontend)
+    - `./mvnw test` (Backend)
+    - `npx playwright test` (E2E)
+- **Git Commit**: Beležimo sve promene uz edukativne poruke.
 
 ---
 
