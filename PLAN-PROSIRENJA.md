@@ -29,7 +29,7 @@ Ovaj dokument je vodič za profesora i studente koji žele da nastave rad na pro
 
 ---
 
-## Faza 1: Servisni Sloj i Validacija
+## Faza 1: Servisni Sloj i Validacija [COMPLETED 01.05.]
 
 **Cilj**: Naučiti studente razdvajanje odgovornosti (Service Layer pattern) i validaciju ulaznih podataka.
 

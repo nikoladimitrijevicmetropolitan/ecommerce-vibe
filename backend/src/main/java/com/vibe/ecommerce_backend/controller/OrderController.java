@@ -1,7 +1,7 @@
 package com.vibe.ecommerce_backend.controller;
 
 import com.vibe.ecommerce_backend.model.Order;
-import com.vibe.ecommerce_backend.repository.OrderRepository;
+import com.vibe.ecommerce_backend.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,11 +11,10 @@ import org.springframework.web.bind.annotation.*;
 public class OrderController {
 
     @Autowired
-    private OrderRepository orderRepository;
+    private OrderService orderService;
 
     @PostMapping
     public Order createOrder(@RequestBody Order order) {
-        // U realnoj aplikaciji ovde bi išla dodatna validacija i obrada plaćanja
-        return orderRepository.save(order);
+        return orderService.createOrder(order);
     }
 }
