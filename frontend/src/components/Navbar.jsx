@@ -1,16 +1,23 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
+import { useAuth } from '../context/AuthContext';
 import './Navbar.css';
 
 const Navbar = () => {
   const [search, setSearch] = useState('');
   const navigate = useNavigate();
   const { totalItems } = useCart();
+  const { user, logout } = useAuth();
 
   const handleSearch = (e) => {
     e.preventDefault();
     navigate(`/?search=${search}`);
+  };
+
+  const handleLogout = () => {
+    logout();
+    navigate('/');
   };
 
   return (
@@ -34,9 +41,21 @@ const Navbar = () => {
             <Link to="/?category=Elektronika">Elektronika</Link>
             <Link to="/?category=Oprema">Oprema</Link>
           </div>
+          
           <Link to="/cart" className="navbar-cart">
             Korpa <span>({totalItems})</span>
           </Link>
+
+          {user ? (
+            <div className="navbar-user">
+              <span className="user-name">Bok, {user.username}</span>
+              <button onClick={handleLogout} className="logout-btn">Odjavi se</button>
+            </div>
+          ) : (
+            <div className="navbar-auth">
+              <Link to="/login" className="login-link">Prijava</Link>
+            </div>
+          )}
         </div>
       </div>
     </nav>

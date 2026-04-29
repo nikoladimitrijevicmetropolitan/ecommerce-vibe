@@ -1,17 +1,33 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
+import { useAuth } from '../context/AuthContext';
 import './CheckoutForm.css';
 
 const CheckoutForm = () => {
   const { cart, totalPrice, clearCart } = useCart();
+  const { user, loading: authLoading } = useAuth();
   const navigate = useNavigate();
+  
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     customerName: '',
     customerEmail: '',
     customerAddress: ''
   });
+
+  // Zaštita rute: ako nije ulogovan, šalji na login
+  useEffect(() => {
+    if (!authLoading && !user) {
+      navigate('/login');
+    } else if (user) {
+      setFormData(prev => ({
+        ...prev,
+        customerName: user.username,
+        customerEmail: user.email || ''
+      }));
+    }
+  }, [user, authLoading, navigate]);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -33,15 +49,22 @@ const CheckoutForm = () => {
     try {
       const response = await fetch('http://localhost:8080/api/orders', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${user.token}`
+        },
         body: JSON.stringify(orderData)
       });
 
       if (response.ok) {
         clearCart();
         navigate('/order-success');
+      } else if (response.status === 401 || response.status === 403) {
+        alert('Vaša sesija je istekla. Molimo prijavite se ponovo.');
+        navigate('/login');
       } else {
-        alert('Greška pri slanju porudžbine.');
+        const errorMsg = await response.json();
+        alert(errorMsg.message || 'Greška pri slanju porudžbine.');
       }
     } catch (error) {
       console.error('Greška:', error);

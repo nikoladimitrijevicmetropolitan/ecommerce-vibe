@@ -111,7 +111,7 @@ git push --force-with-lease   # Siguran force-push nakon rebase-a
 
 ---
 
-## Faza 3: Autentifikacija Korisnika
+## Faza 3: Autentifikacija Korisnika [COMPLETED 02.05.]
 
 **Cilj**: Naučiti studente osnove bezbednosti (Spring Security, JWT tokeni).
 
